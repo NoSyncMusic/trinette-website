@@ -1,0 +1,167 @@
+{
+  "site": {
+    "artistName": "Trinette den Hamer",
+    "pageTitle": "Trinette den Hamer — Fine Art Portraits",
+    "description": "Portretten van dieren en mensen door Trinette den Hamer, gemaakt in pastel, potlood en olieverf.",
+    "contactEmail": "info@trinettedenhamer.nl",
+    "instagramUrl": ""
+  },
+  "colors": {
+    "background": "#5B5650",
+    "backgroundSoft": "#69635C",
+    "panel": "#746D65",
+    "text": "#F1ECE5",
+    "muted": "#C3BBB2",
+    "accent": "#B0A092",
+    "accentLight": "#D0C1B3",
+    "quoteBackground": "#37332F",
+    "ctaBackground": "#645E57"
+  },
+  "navigation": {
+    "work": "Werk",
+    "about": "Over mij",
+    "process": "Werkwijze",
+    "contact": "Contact"
+  },
+  "hero": {
+    "eyebrow": "Fine art · Portretten op maat",
+    "title": "Art is a",
+    "titleAccent": "window of life.",
+    "intro": "Portretten van dieren en mensen, met aandacht voor karakter, licht en detail. Persoonlijk gemaakt in pastel, potlood en olieverf.",
+    "buttonText": "Bekijk het werk",
+    "image": "assets/artwork/yara-azra.jpg",
+    "imageAlt": "Pastelportret van Yara en Azra door Trinette den Hamer",
+    "caption": "Yara & Azra · pastel"
+  },
+  "intro": {
+    "eyebrow": "Het atelier",
+    "title": "Geen standaard portret, maar een werk waarin de blik en persoonlijkheid centraal staan.",
+    "text1": "Een mooie foto is het begin. Van daaruit ontstaat laag voor laag een persoonlijk kunstwerk, gemaakt om een dier, persoon of herinnering tastbaar te houden.",
+    "text2": "De website is bewust rustig opgebouwd: weinig afleiding, veel ruimte, grote beelden en een sobere galerie-uitstraling waarin het werk zelf de hoofdrol krijgt."
+  },
+  "services": [
+    {
+      "number": "01",
+      "title": "Dierenportretten",
+      "note": "Hond · kat · paard · wildlife",
+      "visible": true
+    },
+    {
+      "number": "02",
+      "title": "Mensen & karakter",
+      "note": "Persoonlijke portretten",
+      "visible": true
+    },
+    {
+      "number": "03",
+      "title": "Vrij werk",
+      "note": "Pastel · potlood · olieverf",
+      "visible": true
+    }
+  ],
+  "portfolio": {
+    "eyebrow": "Selected works",
+    "title": "Portfolio",
+    "intro": "Een selectie uit Trinettes eigen werk in pastel, potlood en olieverf. Klik op een werk om het groter te bekijken.",
+    "items": [
+      {
+        "title": "Enzi",
+        "medium": "Pastel",
+        "image": "assets/artwork/enzi.jpg",
+        "alt": "Enzi in pastel door Trinette den Hamer",
+        "size": "tall",
+        "visible": true
+      },
+      {
+        "title": "Klaprozen",
+        "medium": "Pastel",
+        "image": "assets/artwork/klaprozen.jpg",
+        "alt": "Klaprozen in pastel door Trinette den Hamer",
+        "size": "wide",
+        "visible": true
+      },
+      {
+        "title": "Bowy",
+        "medium": "Pastel",
+        "image": "assets/artwork/bowy.jpg",
+        "alt": "Portret van Bowy door Trinette den Hamer",
+        "size": "tall",
+        "visible": true
+      },
+      {
+        "title": "Jacky",
+        "medium": "Pastel",
+        "image": "assets/artwork/jacky.jpg",
+        "alt": "Portret van Jacky door Trinette den Hamer",
+        "size": "square",
+        "visible": true
+      },
+      {
+        "title": "Carla, Louise & Frits",
+        "medium": "Pastel",
+        "image": "assets/artwork/carla-louise-frits.jpg",
+        "alt": "Carla, Louise en Frits in pastel door Trinette den Hamer",
+        "size": "tall",
+        "visible": true
+      },
+      {
+        "title": "Ocean",
+        "medium": "Pastel",
+        "image": "assets/artwork/ocean.jpg",
+        "alt": "Portret van Ocean door Trinette den Hamer",
+        "size": "square",
+        "visible": true
+      }
+    ]
+  },
+  "quote": {
+    "text": "Een portret moet niet alleen lijken, het moet iets laten voelen."
+  },
+  "about": {
+    "eyebrow": "Over Trinette",
+    "title": "Aandacht voor wat een portret persoonlijk maakt.",
+    "text1": "Trinette den Hamer tekent en schildert portretten vanaf foto. Haar werk richt zich op dieren en mensen en wordt uitgevoerd in onder andere pastel, potlood en olieverf.",
+    "text2": "Hier kan Trinette haar eigen verhaal vertellen: waarom ze portretteert, wat haar inspireert en hoe een opdracht bij haar tot stand komt.",
+    "image": "assets/artwork/manderijn.jpg",
+    "imageAlt": "Olieverfschilderij Manderijn door Trinette den Hamer",
+    "buttonText": "Een portret bespreken"
+  },
+  "process": {
+    "eyebrow": "Van foto naar kunstwerk",
+    "title": "De werkwijze",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Kennismaken",
+        "text": "We bespreken het onderwerp, formaat, materiaal en de gewenste uitstraling."
+      },
+      {
+        "number": "02",
+        "title": "De juiste foto",
+        "text": "Een scherpe foto met goed licht vormt de basis voor de compositie en expressie."
+      },
+      {
+        "number": "03",
+        "title": "Het portret ontstaat",
+        "text": "Laag voor laag wordt het werk opgebouwd, met veel aandacht voor blik, structuur en detail."
+      },
+      {
+        "number": "04",
+        "title": "Oplevering",
+        "text": "Na afronding wordt het werk zorgvuldig voorbereid om veilig te worden opgehaald of verzonden."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Commission a portrait",
+    "title": "Een bijzonder portret begint met een goed verhaal.",
+    "text": "Wil je weten wat er mogelijk is? Neem vrijblijvend contact op over een portret, formaat, materiaal of beschikbare plek in de planning.",
+    "buttonText": "Neem contact op"
+  },
+  "footer": {
+    "work": "Portfolio",
+    "about": "Over",
+    "contact": "Contact",
+    "instagram": "Instagram"
+  }
+}
