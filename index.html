@@ -1,0 +1,969 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0d0d0d" />
+  <meta name="description" content="Conceptwebsite voor Trinette den Hamer — portretten in pastel, potlood en olieverf." />
+  <title>Trinette den Hamer — Fine Art Portraits</title>
+
+  <!--
+    CONCEPTVERSIE
+    ==============
+    Dit is één losse HTML-file.
+    De gebruikte fotografie is alleen DEMO-MATERIAAL om de layout te laten zien.
+    Vervang deze afbeeldingen later door foto's/scans van Trinettes eigen werken.
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Italiana&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0c0c0c;
+      --bg-soft: #11110f;
+      --panel: #151513;
+      --text: #eee9e1;
+      --muted: #a59f96;
+      --line: rgba(238,233,225,.13);
+      --accent: #a38e74;
+      --accent-2: #c9b79f;
+      --serif: "Italiana", Georgia, serif;
+      --sans: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --max: 1380px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 83% 9%, rgba(163,142,116,.08), transparent 27rem),
+        var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body.menu-open { overflow: hidden; }
+
+    ::selection {
+      background: var(--accent);
+      color: #111;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; }
+    button, input, textarea { font: inherit; }
+
+    .wrap {
+      width: min(calc(100% - 44px), var(--max));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: currentColor;
+      opacity: .7;
+    }
+
+    header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 50;
+      transition: background .25s ease, border-color .25s ease, backdrop-filter .25s ease;
+    }
+
+    header.scrolled {
+      background: rgba(10,10,10,.78);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 84px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .nav-left, .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+    .nav-right { justify-content: flex-end; }
+
+    .nav a {
+      position: relative;
+      color: #d7d0c7;
+    }
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 100%; bottom: -7px;
+      height: 1px;
+      background: var(--accent-2);
+      transition: right .25s ease;
+    }
+    .nav a:hover::after { right: 0; }
+
+    .brand {
+      font-family: var(--serif);
+      font-size: 22px;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 0;
+      color: var(--text);
+      width: 42px;
+      height: 42px;
+      padding: 9px;
+      cursor: pointer;
+    }
+    .menu-toggle span {
+      display: block;
+      height: 1px;
+      background: currentColor;
+      margin: 6px 0;
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      align-items: end;
+      padding: 150px 0 58px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: clamp(38px, 7vw, 115px);
+      align-items: end;
+    }
+
+    .hero-copy { padding-bottom: 8vh; }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(66px, 9.2vw, 158px);
+      line-height: .84;
+      letter-spacing: -.04em;
+      margin: 28px 0 28px;
+      max-width: 9ch;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent-2);
+      display: block;
+      margin-left: .65em;
+    }
+
+    .hero-intro {
+      color: var(--muted);
+      max-width: 510px;
+      font-size: 16px;
+      margin: 0 0 34px;
+    }
+
+    .text-link {
+      display: inline-flex;
+      gap: 16px;
+      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .text-link .arrow {
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    }
+    .text-link:hover .arrow {
+      transform: translateX(5px);
+      border-color: var(--accent);
+      background: rgba(163,142,116,.08);
+    }
+
+    .hero-art {
+      min-height: 69vh;
+      position: relative;
+      overflow: hidden;
+      background: #161616;
+    }
+    .hero-art img {
+      width: 100%;
+      height: 69vh;
+      object-fit: cover;
+      filter: saturate(.42) contrast(1.08) brightness(.72);
+      transform: scale(1.01);
+    }
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,.36), transparent 45%);
+      pointer-events: none;
+    }
+    .hero-art .label {
+      position: absolute;
+      z-index: 2;
+      left: 24px;
+      bottom: 20px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      color: rgba(255,255,255,.65);
+    }
+
+    .scroll-note {
+      position: absolute;
+      bottom: 60px;
+      right: 30px;
+      transform: rotate(90deg);
+      transform-origin: right bottom;
+      color: #7d7872;
+      font-size: 9px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    section { padding: 140px 0; }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: .72fr 1.28fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .intro-big {
+      font-family: var(--serif);
+      font-size: clamp(38px, 5vw, 76px);
+      line-height: 1.06;
+      letter-spacing: -.025em;
+      margin: 0;
+    }
+    .intro-copy {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 44px;
+      color: var(--muted);
+      padding-top: 14px;
+    }
+    .intro-copy p { margin-top: 0; }
+
+    .services {
+      margin-top: 78px;
+      border-top: 1px solid var(--line);
+    }
+    .service-row {
+      display: grid;
+      grid-template-columns: 82px 1fr auto;
+      align-items: center;
+      min-height: 106px;
+      border-bottom: 1px solid var(--line);
+      transition: background .2s ease, padding .2s ease;
+    }
+    .service-row:hover {
+      background: rgba(255,255,255,.018);
+      padding-inline: 14px;
+    }
+    .service-no {
+      color: #716b65;
+      font-size: 11px;
+      letter-spacing: .14em;
+    }
+    .service-title {
+      font-family: var(--serif);
+      font-size: clamp(27px, 3vw, 44px);
+    }
+    .service-note {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .works {
+      background: var(--bg-soft);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(48px, 7vw, 94px);
+      line-height: .95;
+      letter-spacing: -.03em;
+      margin: 18px 0 0;
+    }
+    .section-aside {
+      color: var(--muted);
+      max-width: 340px;
+      font-size: 13px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 24px;
+    }
+    .gallery-col {
+      display: grid;
+      gap: 24px;
+      align-content: start;
+    }
+
+    .work {
+      position: relative;
+      overflow: hidden;
+      background: #181817;
+      cursor: zoom-in;
+    }
+    .work.tall { aspect-ratio: .78; }
+    .work.wide { aspect-ratio: 1.28; }
+    .work.square { aspect-ratio: 1; }
+
+    .work img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(.28) contrast(1.06) brightness(.77);
+      transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .5s ease;
+    }
+    .work:hover img {
+      transform: scale(1.035);
+      filter: saturate(.45) contrast(1.04) brightness(.82);
+    }
+
+    .work-caption {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 17px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: rgba(255,255,255,.77);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .25s ease, transform .25s ease;
+      z-index: 2;
+    }
+    .work::after {
+      content: "";
+      position: absolute;
+      inset: 45% 0 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.55));
+      opacity: 0;
+      transition: opacity .25s ease;
+      pointer-events: none;
+    }
+    .work:hover::after,
+    .work:hover .work-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .quote {
+      padding: 170px 0;
+      text-align: center;
+      position: relative;
+    }
+    .quote blockquote {
+      margin: 0 auto;
+      max-width: 970px;
+      font-family: var(--serif);
+      font-size: clamp(46px, 6.7vw, 96px);
+      line-height: 1.03;
+      letter-spacing: -.025em;
+    }
+    .quote blockquote span { color: var(--accent-2); }
+
+    .about {
+      border-block: 1px solid var(--line);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(50px, 9vw, 140px);
+      align-items: center;
+    }
+    .about-image {
+      aspect-ratio: .86;
+      overflow: hidden;
+    }
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1) contrast(1.05) brightness(.68);
+    }
+    .about-copy h2 {
+      font-family: var(--serif);
+      font-size: clamp(48px, 6vw, 82px);
+      line-height: 1;
+      font-weight: 400;
+      margin: 18px 0 30px;
+    }
+    .about-copy p {
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .process-list {
+      margin-top: 44px;
+      border-top: 1px solid var(--line);
+    }
+    .process-item {
+      padding: 23px 0;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 20px;
+    }
+    .process-item small {
+      color: var(--accent-2);
+      padding-top: 3px;
+    }
+    .process-item strong {
+      font-weight: 400;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .process-item span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .cta {
+      padding: 165px 0 120px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 100%, rgba(163,142,116,.10), transparent 36rem);
+    }
+    .cta h2 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(56px, 9vw, 132px);
+      line-height: .93;
+      max-width: 1000px;
+      margin: 18px auto 34px;
+      letter-spacing: -.035em;
+    }
+    .cta p {
+      max-width: 530px;
+      margin: 0 auto 38px;
+      color: var(--muted);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 27px;
+      border: 1px solid var(--accent);
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 10px;
+      transition: background .2s ease, color .2s ease;
+    }
+    .button:hover {
+      background: var(--accent-2);
+      color: #111;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 35px 0 40px;
+      color: #827c75;
+      font-size: 11px;
+    }
+    .footer-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      z-index: 45;
+      inset: 0;
+      background: #0b0b0a;
+      padding: 120px 28px 40px;
+    }
+    .mobile-menu nav {
+      display: grid;
+      gap: 18px;
+    }
+    .mobile-menu a {
+      font-family: var(--serif);
+      font-size: 44px;
+      line-height: 1.15;
+    }
+    .mobile-menu.open { display: block; }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(5,5,5,.96);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: min(1100px, 92vw);
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      filter: saturate(.35);
+    }
+    .lightbox button {
+      position: absolute;
+      right: 22px;
+      top: 18px;
+      border: 0;
+      background: transparent;
+      color: #eee;
+      font-size: 34px;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        grid-template-columns: auto 1fr auto;
+        min-height: 72px;
+      }
+      .nav-left, .nav-right { display: none; }
+      .brand { text-align: center; font-size: 19px; }
+      .menu-toggle { display: block; }
+
+      .hero { padding-top: 112px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-copy { padding-bottom: 0; }
+      .hero h1 { font-size: clamp(64px, 18vw, 112px); }
+      .hero-art, .hero-art img { min-height: 62vh; height: 62vh; }
+      .scroll-note { display: none; }
+
+      section { padding: 100px 0; }
+      .intro-grid,
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .intro-copy { padding-top: 0; }
+      .service-row { grid-template-columns: 52px 1fr; }
+      .service-note { display: none; }
+
+      .section-head {
+        display: grid;
+        align-items: start;
+      }
+    }
+
+    @media (max-width: 660px) {
+      .wrap { width: min(calc(100% - 28px), var(--max)); }
+
+      .hero { padding-bottom: 30px; }
+      .hero h1 { margin-top: 21px; }
+      .hero h1 em { margin-left: .25em; }
+      .hero-art, .hero-art img { min-height: 56vh; height: 56vh; }
+
+      .intro-copy { grid-template-columns: 1fr; gap: 10px; }
+      .gallery { grid-template-columns: 1fr; }
+      .work:hover .work-caption,
+      .work .work-caption { opacity: 1; transform: none; }
+      .work::after { opacity: .65; }
+
+      .quote { padding: 110px 0; }
+      .about-image { aspect-ratio: .95; }
+      .footer-grid { display: grid; }
+      .footer-links { flex-wrap: wrap; }
+
+      .cta { padding-top: 120px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header id="siteHeader">
+    <div class="wrap nav">
+      <nav class="nav-left" aria-label="Hoofdnavigatie links">
+        <a href="#werk">Werk</a>
+        <a href="#over">Over mij</a>
+      </nav>
+
+      <a href="#top" class="brand">Trinette den Hamer</a>
+
+      <nav class="nav-right" aria-label="Hoofdnavigatie rechts">
+        <a href="#werkwijze">Werkwijze</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu openen" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <nav>
+      <a href="#werk">Werk</a>
+      <a href="#over">Over mij</a>
+      <a href="#werkwijze">Werkwijze</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">Fine art · Portretten op maat</div>
+          <h1>Art is a <em>window of life.</em></h1>
+          <p class="hero-intro">
+            Portretten van dieren en mensen, met aandacht voor karakter, licht en detail.
+            Persoonlijk gemaakt in pastel, potlood en olieverf.
+          </p>
+          <a class="text-link" href="#werk">
+            Bekijk het werk
+            <span class="arrow">→</span>
+          </a>
+        </div>
+
+        <figure class="hero-art reveal" style="transition-delay:.12s">
+          <img
+            src="https://images.unsplash.com/photo-1630053905273-2dd2f41f0127?auto=format&fit=crop&fm=jpg&q=82&w=1800"
+            alt="Conceptbeeld van een hondenportret"
+          />
+          <figcaption class="label">Conceptbeeld · vervang door eigen werk</figcaption>
+        </figure>
+      </div>
+      <div class="scroll-note">Scroll to discover</div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="intro-grid">
+          <div class="reveal">
+            <div class="eyebrow">Het atelier</div>
+          </div>
+          <div>
+            <h2 class="intro-big reveal">
+              Geen standaard portret, maar een werk waarin de blik en persoonlijkheid centraal staan.
+            </h2>
+
+            <div class="intro-copy reveal">
+              <p>
+                Een mooie foto is het begin. Van daaruit ontstaat laag voor laag een persoonlijk kunstwerk,
+                gemaakt om een dier, persoon of herinnering tastbaar te houden.
+              </p>
+              <p>
+                De website is bewust rustig opgebouwd: weinig afleiding, veel ruimte, grote beelden
+                en een donkere galerie-uitstraling waarin het werk zelf de hoofdrol krijgt.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="services reveal">
+          <div class="service-row">
+            <div class="service-no">01</div>
+            <div class="service-title">Dierenportretten</div>
+            <div class="service-note">Hond · kat · paard · wildlife</div>
+          </div>
+          <div class="service-row">
+            <div class="service-no">02</div>
+            <div class="service-title">Mensen & karakter</div>
+            <div class="service-note">Persoonlijke portretten</div>
+          </div>
+          <div class="service-row">
+            <div class="service-no">03</div>
+            <div class="service-title">Vrij werk</div>
+            <div class="service-note">Pastel · potlood · olieverf</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="works" id="werk">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="reveal">
+            <div class="eyebrow">Selected works</div>
+            <h2 class="section-title">Portfolio</h2>
+          </div>
+          <p class="section-aside reveal">
+            In de definitieve versie komen hier uitsluitend Trinettes eigen werken.
+            Klik op een beeld om het groter te bekijken.
+          </p>
+        </div>
+
+        <div class="gallery">
+          <div class="gallery-col">
+            <article class="work tall reveal" data-lightbox>
+              <img src="https://images.unsplash.com/photo-1696488276332-7343293a5e2c?auto=format&fit=crop&fm=jpg&q=82&w=1600" alt="Demo portret van hond" loading="lazy">
+              <div class="work-caption"><span>Dierenportret</span><span>Pastel</span></div>
+            </article>
+
+            <article class="work wide reveal" data-lightbox>
+              <img src="https://images.unsplash.com/photo-1771749141621-cf9a4d91c14e?auto=format&fit=crop&fm=jpg&q=82&w=1600" alt="Demo portret van persoon" loading="lazy">
+              <div class="work-caption"><span>Karakterstudie</span><span>Portret</span></div>
+            </article>
+          </div>
+
+          <div class="gallery-col">
+            <article class="work square reveal" data-lightbox>
+              <img src="https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?auto=format&fit=crop&fm=jpg&q=82&w=1400" alt="Demo portret van kat" loading="lazy">
+              <div class="work-caption"><span>Dierenportret</span><span>Detail</span></div>
+            </article>
+
+            <article class="work tall reveal" data-lightbox>
+              <img src="https://images.unsplash.com/photo-1639405258292-0616102926f2?auto=format&fit=crop&fm=jpg&q=82&w=1500" alt="Demo zwart-wit portret van kat" loading="lazy">
+              <div class="work-caption"><span>Monochroom</span><span>Potlood</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote">
+      <div class="wrap reveal">
+        <blockquote>
+          “Een portret moet niet alleen <span>lijken</span>, het moet iets laten <span>voelen</span>.”
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="about" id="over">
+      <div class="wrap about-grid">
+        <div class="about-image reveal">
+          <img
+            src="https://images.unsplash.com/photo-1776670486766-d4cdfdb5fe33?auto=format&fit=crop&fm=jpg&q=82&w=1500"
+            alt="Conceptbeeld voor de sectie over de kunstenaar"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="about-copy reveal">
+          <div class="eyebrow">Over Trinette</div>
+          <h2>Aandacht voor wat een portret persoonlijk maakt.</h2>
+          <p>
+            Trinette den Hamer tekent en schildert portretten vanaf foto. Haar werk richt zich op
+            dieren en mensen en wordt uitgevoerd in onder andere pastel, potlood en olieverf.
+          </p>
+          <p>
+            In de uiteindelijke website kunnen we hier haar eigen verhaal veel persoonlijker vertellen:
+            waarom ze portretteert, wat haar inspireert en hoe een opdracht bij haar tot stand komt.
+          </p>
+          <a class="text-link" href="#contact" style="margin-top:20px">
+            Een portret bespreken
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="werkwijze">
+      <div class="wrap about-grid">
+        <div class="reveal">
+          <div class="eyebrow">Van foto naar kunstwerk</div>
+          <h2 class="section-title" style="font-size:clamp(48px,6vw,82px)">De werkwijze</h2>
+        </div>
+
+        <div class="process-list reveal">
+          <div class="process-item">
+            <small>01</small>
+            <div>
+              <strong>Kennismaken</strong>
+              <span>We bespreken het onderwerp, formaat, materiaal en de gewenste uitstraling.</span>
+            </div>
+          </div>
+          <div class="process-item">
+            <small>02</small>
+            <div>
+              <strong>De juiste foto</strong>
+              <span>Een scherpe foto met goed licht vormt de basis voor de compositie en expressie.</span>
+            </div>
+          </div>
+          <div class="process-item">
+            <small>03</small>
+            <div>
+              <strong>Het portret ontstaat</strong>
+              <span>Laag voor laag wordt het werk opgebouwd, met veel aandacht voor blik, structuur en detail.</span>
+            </div>
+          </div>
+          <div class="process-item">
+            <small>04</small>
+            <div>
+              <strong>Oplevering</strong>
+              <span>Na afronding wordt het werk zorgvuldig voorbereid om veilig te worden opgehaald of verzonden.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="wrap reveal">
+        <div class="eyebrow" style="justify-content:center">Commission a portrait</div>
+        <h2>Een bijzonder portret begint met een goed verhaal.</h2>
+        <p>
+          Wil je weten wat er mogelijk is? Neem vrijblijvend contact op over een portret,
+          formaat, materiaal of beschikbare plek in de planning.
+        </p>
+        <a class="button" href="mailto:info@trinettedenhamer.nl?subject=Aanvraag%20portret">Neem contact op</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>© <span id="year"></span> Trinette den Hamer</div>
+      <div class="footer-links">
+        <a href="#werk">Portfolio</a>
+        <a href="#over">Over</a>
+        <a href="#contact">Contact</a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button id="lightboxClose" aria-label="Sluiten">×</button>
+    <img id="lightboxImage" alt="">
+  </div>
+
+  <script>
+    const header = document.getElementById('siteHeader');
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('mobileMenu');
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      document.body.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .10 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const close = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('[data-lightbox]').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        lightboxImage.src = img.src.replace(/w=\d+/, 'w=2400');
+        lightboxImage.alt = img.alt;
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    close.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
