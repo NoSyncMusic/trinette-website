@@ -1,0 +1,157 @@
+name: Import images from old Trinette site
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/import-old-images.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Python dependencies
+        run: python -m pip install --quiet requests beautifulsoup4 pillow
+
+      - name: Download artwork from old website
+        shell: python
+        run: |
+          import io
+          import os
+          import re
+          import json
+          import hashlib
+          from urllib.parse import urljoin, urlparse
+          import requests
+          from bs4 import BeautifulSoup
+          from PIL import Image
+
+          pages = {
+              "yara-azra": "https://trinettedenhamer.nl/yara-en-azra-in-pastel/",
+              "enzi": "https://trinettedenhamer.nl/enzi-in-pastel/",
+              "jacky": "https://trinettedenhamer.nl/jacky-in-pastel/",
+              "carla-louise-frits": "https://trinettedenhamer.nl/carla-louise-en-frits-in-pastel/",
+              "ocean": "https://trinettedenhamer.nl/portret-ocean/",
+              "bowy": "https://trinettedenhamer.nl/portret-bowy/",
+              "klaprozen": "https://trinettedenhamer.nl/klaprozen-in-pastel/",
+              "ijsvogel": "https://trinettedenhamer.nl/ijsvogel-olieverfschilderij/",
+              "manderijn": "https://trinettedenhamer.nl/manderijn-olieverfschilderij/",
+          }
+
+          session = requests.Session()
+          session.headers.update({
+              "User-Agent": "Mozilla/5.0 (compatible; TrinetteSiteMigration/1.0)"
+          })
+
+          out_dir = "assets/artwork"
+          os.makedirs(out_dir, exist_ok=True)
+          manifest = {}
+
+          def best_img_url(img, base):
+              srcset = img.get("srcset") or img.get("data-srcset")
+              if srcset:
+                  choices = []
+                  for item in srcset.split(","):
+                      bits = item.strip().split()
+                      if not bits:
+                          continue
+                      url = bits[0]
+                      width = 0
+                      if len(bits) > 1 and bits[1].endswith("w"):
+                          try:
+                              width = int(bits[1][:-1])
+                          except:
+                              pass
+                      choices.append((width, url))
+                  if choices:
+                      return urljoin(base, max(choices, key=lambda x: x[0])[1])
+              for attr in ("data-lazy-src", "data-src", "src"):
+                  if img.get(attr):
+                      return urljoin(base, img.get(attr))
+              return None
+
+          for key, page_url in pages.items():
+              print(f"Fetching {page_url}")
+              r = session.get(page_url, timeout=30)
+              r.raise_for_status()
+              soup = BeautifulSoup(r.text, "html.parser")
+              scope = soup.find("article") or soup.find("main") or soup
+
+              candidates = []
+              for img in scope.find_all("img"):
+                  u = best_img_url(img, page_url)
+                  if not u:
+                      continue
+                  parsed = urlparse(u)
+                  if "trinettedenhamer.nl" not in parsed.netloc:
+                      continue
+                  if "/wp-content/uploads/" not in parsed.path:
+                      continue
+                  low = u.lower()
+                  if any(x in low for x in ("logo", "avatar", "cropped-", "icon")):
+                      continue
+                  try:
+                      ir = session.get(u, timeout=30)
+                      ir.raise_for_status()
+                      im = Image.open(io.BytesIO(ir.content))
+                      w, h = im.size
+                      if w < 500 or h < 350:
+                          continue
+                      candidates.append((w*h, w, h, u, ir.content, im.format))
+                  except Exception as e:
+                      print("skip", u, e)
+
+              # dedupe by URL, keep largest useful image
+              uniq = {}
+              for c in candidates:
+                  uniq[c[3]] = c
+              candidates = sorted(uniq.values(), reverse=True)
+
+              if not candidates:
+                  print(f"No suitable image found for {key}")
+                  continue
+
+              _, w, h, u, data, fmt = candidates[0]
+              ext = {
+                  "JPEG": ".jpg",
+                  "PNG": ".png",
+                  "WEBP": ".webp"
+              }.get((fmt or "").upper(), os.path.splitext(urlparse(u).path)[1] or ".jpg")
+
+              dest = f"{out_dir}/{key}{ext}"
+              with open(dest, "wb") as fh:
+                  fh.write(data)
+
+              manifest[key] = {
+                  "file": dest,
+                  "source_page": page_url,
+                  "source_image": u,
+                  "width": w,
+                  "height": h
+              }
+              print(f"Saved {dest}: {w}x{h} from {u}")
+
+          with open(f"{out_dir}/manifest.json", "w", encoding="utf-8") as fh:
+              json.dump(manifest, fh, indent=2, ensure_ascii=False)
+
+          if len(manifest) < 4:
+              raise SystemExit(f"Only found {len(manifest)} usable artwork images; refusing incomplete import.")
+
+      - name: Commit imported images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/artwork
+          if git diff --cached --quiet; then
+            echo "No image changes to commit"
+            exit 0
+          fi
+          git commit -m "Import artwork from existing Trinette website"
+          git push
