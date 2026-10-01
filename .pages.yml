@@ -326,3 +326,14 @@ content:
     - name: instagram
       label: Instagram-linktekst
       type: string
+
+actions:
+- name: publish-namecheap
+  label: Publiceer naar Namecheap
+  workflow: deploy-namecheap.yml
+  ref: current
+  cancelable: false
+  confirm:
+    title: Website live publiceren?
+    message: Publiceert exact deze geteste GitHub-versie naar Namecheap. Controleer eerst de GitHub Pages-preview.
+    button: Publiceer
