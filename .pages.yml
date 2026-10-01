@@ -1,0 +1,328 @@
+media:
+  input: assets/artwork
+  output: assets/artwork
+
+content:
+- name: website
+  label: Website beheren
+  type: file
+  path: content.json
+  format: json
+  fields:
+
+  - name: site
+    label: Basisgegevens
+    type: object
+    fields:
+    - name: artistName
+      label: Naam
+      type: string
+      required: true
+    - name: pageTitle
+      label: Titel in browsertabblad
+      type: string
+      required: true
+    - name: description
+      label: Omschrijving voor Google
+      type: text
+    - name: contactEmail
+      label: Contact e-mailadres
+      type: string
+      required: true
+    - name: instagramUrl
+      label: Instagram-link
+      type: string
+      description: Volledige https://-link. Laat leeg om Instagram in de footer te verbergen.
+
+  - name: colors
+    label: Kleuren
+    type: object
+    fields:
+    - name: background
+      label: Hoofdachtergrond
+      type: string
+      required: true
+      pattern:
+        regex: ^\s*#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\s*$
+        message: Gebruik een HEX-kleur, bijvoorbeeld #5B5650.
+    - name: backgroundSoft
+      label: Portfolio-achtergrond
+      type: string
+      required: true
+      pattern:
+        regex: ^\s*#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\s*$
+        message: Gebruik een HEX-kleur.
+    - name: panel
+      label: Achtergrond bij afbeeldingen
+      type: string
+      required: true
+      pattern:
+        regex: ^\s*#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\s*$
+        message: Gebruik een HEX-kleur.
+    - name: text
+      label: Hoofdtekstkleur
+      type: string
+      required: true
+      pattern:
+        regex: ^\s*#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\s*$
+        message: Gebruik een HEX-kleur.
+    - name: muted
+      label: Zachte tekstkleur
+      type: string
+      required: true
+      pattern:
+        regex: ^\s*#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\s*$
+        message: Gebruik een HEX-kleur.
+    - name: accent
+      label: Accentkleur
+      type: string
+      required: true
+      pattern:
+        regex: ^\s*#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\s*$
+        message: Gebruik een HEX-kleur.
+    - name: accentLight
+      label: Licht accent
+      type: string
+      required: true
+      pattern:
+        regex: ^\s*#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\s*$
+        message: Gebruik een HEX-kleur.
+    - name: quoteBackground
+      label: Achtergrond quote
+      type: string
+      required: true
+      pattern:
+        regex: ^\s*#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\s*$
+        message: Gebruik een HEX-kleur.
+    - name: ctaBackground
+      label: Achtergrond contactblok
+      type: string
+      required: true
+      pattern:
+        regex: ^\s*#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\s*$
+        message: Gebruik een HEX-kleur.
+
+  - name: navigation
+    label: Menu
+    type: object
+    fields:
+    - name: work
+      label: Werk
+      type: string
+    - name: about
+      label: Over mij
+      type: string
+    - name: process
+      label: Werkwijze
+      type: string
+    - name: contact
+      label: Contact
+      type: string
+
+  - name: hero
+    label: Bovenkant homepage
+    type: object
+    fields:
+    - name: eyebrow
+      label: Kleine tekst boven titel
+      type: string
+    - name: title
+      label: Eerste regel grote titel
+      type: string
+      required: true
+    - name: titleAccent
+      label: Tweede regel grote titel
+      type: string
+      required: true
+    - name: intro
+      label: Introductietekst
+      type: text
+    - name: buttonText
+      label: Tekst knop
+      type: string
+    - name: image
+      label: Grote afbeelding
+      type: image
+    - name: imageAlt
+      label: Beschrijving afbeelding
+      type: string
+    - name: caption
+      label: Bijschrift afbeelding
+      type: string
+
+  - name: intro
+    label: Intro / atelier
+    type: object
+    fields:
+    - name: eyebrow
+      label: Kleine tekst
+      type: string
+    - name: title
+      label: Grote tekst
+      type: text
+    - name: text1
+      label: Tekst links
+      type: text
+    - name: text2
+      label: Tekst rechts
+      type: text
+
+  - name: services
+    label: Soorten werk
+    type: object
+    list: true
+    fields:
+    - name: number
+      label: Nummer
+      type: string
+    - name: title
+      label: Titel
+      type: string
+      required: true
+    - name: note
+      label: Kleine toelichting
+      type: string
+    - name: visible
+      label: Zichtbaar
+      type: boolean
+
+  - name: portfolio
+    label: Portfolio
+    type: object
+    fields:
+    - name: eyebrow
+      label: Kleine tekst
+      type: string
+    - name: title
+      label: Titel
+      type: string
+    - name: intro
+      label: Introductie
+      type: text
+    - name: items
+      label: Werken
+      type: object
+      list: true
+      description: Sleep de items om de volgorde te wijzigen. Nieuwe foto's kun je direct uploaden.
+      fields:
+      - name: title
+        label: Naam van het werk
+        type: string
+        required: true
+      - name: medium
+        label: Techniek
+        type: string
+        description: Bijvoorbeeld Pastel, Potlood of Olieverf.
+      - name: image
+        label: Afbeelding
+        type: image
+        required: true
+      - name: alt
+        label: Beschrijving voor toegankelijkheid
+        type: string
+      - name: size
+        label: Formaat op de website
+        type: select
+        options:
+          values:
+          - tall
+          - square
+          - wide
+        description: tall = hoog, square = vierkant, wide = breed.
+      - name: visible
+        label: Zichtbaar
+        type: boolean
+
+  - name: quote
+    label: Grote quote
+    type: object
+    fields:
+    - name: text
+      label: Quote
+      type: text
+
+  - name: about
+    label: Over Trinette
+    type: object
+    fields:
+    - name: eyebrow
+      label: Kleine tekst
+      type: string
+    - name: title
+      label: Titel
+      type: text
+    - name: text1
+      label: Eerste alinea
+      type: text
+    - name: text2
+      label: Tweede alinea
+      type: text
+    - name: image
+      label: Afbeelding
+      type: image
+    - name: imageAlt
+      label: Beschrijving afbeelding
+      type: string
+    - name: buttonText
+      label: Tekst knop
+      type: string
+
+  - name: process
+    label: Werkwijze
+    type: object
+    fields:
+    - name: eyebrow
+      label: Kleine tekst
+      type: string
+    - name: title
+      label: Titel
+      type: string
+    - name: steps
+      label: Stappen
+      type: object
+      list: true
+      fields:
+      - name: number
+        label: Nummer
+        type: string
+      - name: title
+        label: Titel
+        type: string
+        required: true
+      - name: text
+        label: Uitleg
+        type: text
+
+  - name: contact
+    label: Contactblok
+    type: object
+    fields:
+    - name: eyebrow
+      label: Kleine tekst
+      type: string
+    - name: title
+      label: Grote titel
+      type: text
+    - name: text
+      label: Uitleg
+      type: text
+    - name: buttonText
+      label: Tekst knop
+      type: string
+
+  - name: footer
+    label: Footer
+    type: object
+    fields:
+    - name: work
+      label: Portfolio-link
+      type: string
+    - name: about
+      label: Over-link
+      type: string
+    - name: contact
+      label: Contact-link
+      type: string
+    - name: instagram
+      label: Instagram-linktekst
+      type: string
