@@ -1,0 +1,58 @@
+{
+  "yara-azra": {
+    "file": "assets/artwork/yara-azra.jpg",
+    "source_page": "https://trinettedenhamer.nl/yara-en-azra-in-pastel/",
+    "source_image": "https://trinettedenhamer.nl/wp-content/uploads/2024/08/IMG_1858.jpeg",
+    "width": 1122,
+    "height": 1340
+  },
+  "enzi": {
+    "file": "assets/artwork/enzi.jpg",
+    "source_page": "https://trinettedenhamer.nl/enzi-in-pastel/",
+    "source_image": "https://trinettedenhamer.nl/wp-content/uploads/2024/08/IMG_1860.jpeg",
+    "width": 1166,
+    "height": 1445
+  },
+  "jacky": {
+    "file": "assets/artwork/jacky.jpg",
+    "source_page": "https://trinettedenhamer.nl/jacky-in-pastel/",
+    "source_image": "https://trinettedenhamer.nl/wp-content/uploads/2022/03/77163363-3AA3-4A98-B0B8-575BA6EBF249.jpeg",
+    "width": 750,
+    "height": 926
+  },
+  "carla-louise-frits": {
+    "file": "assets/artwork/carla-louise-frits.jpg",
+    "source_page": "https://trinettedenhamer.nl/carla-louise-en-frits-in-pastel/",
+    "source_image": "https://trinettedenhamer.nl/wp-content/uploads/2022/03/70DC56B1-EBCE-4FBF-B665-494F8DAEB00B-2048x2731.jpeg",
+    "width": 2048,
+    "height": 2731
+  },
+  "ocean": {
+    "file": "assets/artwork/ocean.jpg",
+    "source_page": "https://trinettedenhamer.nl/portret-ocean/",
+    "source_image": "https://trinettedenhamer.nl/wp-content/uploads/2021/12/D4D297EF-55A0-446C-85F6-CEB9B59C7D9B.jpeg",
+    "width": 750,
+    "height": 926
+  },
+  "bowy": {
+    "file": "assets/artwork/bowy.jpg",
+    "source_page": "https://trinettedenhamer.nl/portret-bowy/",
+    "source_image": "https://trinettedenhamer.nl/wp-content/uploads/2021/12/6DF6071E-EB0A-454E-9F78-A3CAEEDA465E.jpeg",
+    "width": 750,
+    "height": 925
+  },
+  "klaprozen": {
+    "file": "assets/artwork/klaprozen.jpg",
+    "source_page": "https://trinettedenhamer.nl/klaprozen-in-pastel/",
+    "source_image": "https://trinettedenhamer.nl/wp-content/uploads/2024/08/IMG_1861.jpeg",
+    "width": 996,
+    "height": 634
+  },
+  "manderijn": {
+    "file": "assets/artwork/manderijn.jpg",
+    "source_page": "https://trinettedenhamer.nl/manderijn-olieverfschilderij/",
+    "source_image": "https://trinettedenhamer.nl/wp-content/uploads/2023/06/manderijn.jpg",
+    "width": 1085,
+    "height": 1625
+  }
+}
